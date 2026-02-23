@@ -6,7 +6,6 @@
 \usage{
 chartgpu(
   data = NULL,
-  mapping = NULL,
   type = NULL,
   ...,
   width = NULL,
@@ -16,8 +15,6 @@ chartgpu(
 }
 \arguments{
 \item{data}{Can be a \code{data.frame} if function used with other layers functions or a list of parameters for configuring a chart.}
-
-\item{mapping}{Default list of aesthetic mappings to use for chart, only used if \code{data} is a \code{data.frame}.}
 
 \item{...}{Additional parameters.}
 

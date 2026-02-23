@@ -23,3 +23,22 @@ parse_data <- function(data) {
   return(data)
 }
 
+
+make_serie <- function(data, type = NULL) {
+  series <- lapply(
+    X = colnames(data)[-1],
+    FUN = function(nm) {
+      c(colnames(data)[1], nm)
+    }
+  )
+  lapply(
+    X = series,
+    FUN = function(nms) {
+      list(
+        data = parse_data(data[, nms]),
+        type = type %||% "line",
+        name = nms[2]
+      )
+    }
+  )
+}
