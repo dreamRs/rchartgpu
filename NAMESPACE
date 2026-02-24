@@ -2,6 +2,8 @@
 
 export(chartgpu)
 export(chartgpuOutput)
+export(chartgpu_serie)
 export(renderChartgpu)
 importFrom(htmlwidgets,createWidget)
 importFrom(htmlwidgets,sizingPolicy)
+importFrom(utils,modifyList)

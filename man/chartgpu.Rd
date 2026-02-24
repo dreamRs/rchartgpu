@@ -40,10 +40,13 @@ ChartGPU is a TypeScript charting library built on WebGPU for smooth, interactiv
 }
 \examples{
 
-# With a data.frame
-chartgpu(ggplot2::economics)
+# With a data.frame :
+chartgpu(ggplot2::economics) # default to line chart
 
-# With a list passed directly to Javascript method
+# scatter chart :
+chartgpu(ggplot2::diamonds[, c("carat", "price")], type = "scatter")
+
+# With a list passed directly to Javascript method :
 chartgpu(list(
   series = list(
     list(
@@ -57,7 +60,7 @@ chartgpu(list(
   )
 ))
 
-# Two series and some options
+# Two series and some options :
 chartgpu(list(
   series = list(
     list(
@@ -80,6 +83,8 @@ chartgpu(list(
     )
   ),
   xAxis = list(name = "X axis"),
-  yAxis = list(name = "Y axis")
+  yAxis = list(name = "Y axis"),
+  tooltip = list(trigger = "axis"),
+  dataZoom = list(list(type = "inside"), list(type = "slider"))
 ))
 }

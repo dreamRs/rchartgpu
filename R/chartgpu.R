@@ -24,6 +24,7 @@ chartgpu <- function(data = NULL, type = NULL, ..., width = NULL, height = NULL,
       x$options$series,
       make_serie(data, type = type)
     )
+    x$series_names <- colnames(data)[-1]
     if (inherits(data[[1]][1], c("Date", "POSIXct")) && is.null(x$options$xAxis$type)) {
       x$options$xAxis$type <- "time"
     }

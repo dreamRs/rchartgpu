@@ -7,6 +7,10 @@ list1 <- function(x){
   }
 }
 
+dropNulls <- function(x) {
+  x[!vapply(x, is.null, FUN.VALUE = logical(1))]
+}
+
 
 parse_data <- function(data) {
   data[] <- lapply(
