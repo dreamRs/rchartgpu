@@ -14,7 +14,9 @@ chartgpu(
 )
 }
 \arguments{
-\item{data}{Can be a \code{data.frame} if function used with other layers functions or a list of parameters for configuring a chart.}
+\item{data}{Can be a \code{data.frame} (first column is used on x-axis, the others on y-axis) or a list of parameters for configuring a chart.}
+
+\item{type}{Type of chart, if \code{data} is a \code{data.frame}.}
 
 \item{...}{Additional parameters.}
 
@@ -35,4 +37,49 @@ A \code{\link[=chartgpu]{chartgpu()}} \code{htmlwidget} object.
 }
 \description{
 ChartGPU is a TypeScript charting library built on WebGPU for smooth, interactive rendering—especially when you have lots of data. See https://github.com/ChartGPU/ChartGPU.
+}
+\examples{
+
+# With a data.frame
+chartgpu(ggplot2::economics)
+
+# With a list passed directly to Javascript method
+chartgpu(list(
+  series = list(
+    list(
+      type = "line",
+      name = "Sine",
+      data = data.frame(
+        x = seq(-3, 7, by = 1/8),
+        y = sin(seq(-3, 7, by = 1/8))
+      )
+    )
+  )
+))
+
+# Two series and some options
+chartgpu(list(
+  series = list(
+    list(
+      type = "line",
+      name = "Sine",
+      data = data.frame(
+        x = seq(-3, 7, by = 1/8),
+        y = sin(seq(-3, 7, by = 1/8))
+      ),
+      color = "#228B22" # forestgreen, use hex code
+    ),
+    list(
+      type = "line",
+      name = "Cosine",
+      data = data.frame(
+        x = seq(-3, 7, by = 1/8),
+        y = cos(seq(-3, 7, by = 1/8))
+      ),
+      color = "#b22222" # firebrick, use hex code
+    )
+  ),
+  xAxis = list(name = "X axis"),
+  yAxis = list(name = "Y axis")
+))
 }

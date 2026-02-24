@@ -8,3 +8,5 @@
 ^webpack\.prod\.js$
 ^webpack\.common\.js$
 ^LICENSE\.md$
+^data-raw$
+^examples$

@@ -9,7 +9,6 @@ list1 <- function(x){
 
 
 parse_data <- function(data) {
-  data <- unname(data)
   data[] <- lapply(
     X = data,
     FUN = function(x) {
@@ -31,11 +30,12 @@ make_serie <- function(data, type = NULL) {
       c(colnames(data)[1], nm)
     }
   )
+  data <- parse_data(data)
   lapply(
     X = series,
     FUN = function(nms) {
       list(
-        data = parse_data(data[, nms]),
+        data = unname(data[, nms]),
         type = type %||% "line",
         name = nms[2]
       )
