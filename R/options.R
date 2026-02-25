@@ -24,3 +24,40 @@ chartgpu_serie <- function(chart, name, label = NULL, color = NULL, ...) {
   )
   return(chart)
 }
+
+
+#' ChartGPU Theme
+#'
+#' @param chart A chart created with [chartgpu()].
+#' @param ... Options for theme, see [https://github.com/ChartGPU/ChartGPU/blob/main/docs/api/themes.md](https://github.com/ChartGPU/ChartGPU/blob/main/docs/api/themes.md).
+#'
+#' @returns A [chartgpu()] `htmlwidget` object.
+#' @export
+#'
+#' @name chartgpu-theme
+#'
+#' @example examples/chartgpu_theme.R
+chartgpu_theme <- function(chart, ...) {
+  stopifnot("`chart` must have been created with `chartgpu`" = inherits(chart, "chartgpu"))
+  chart$x$options$theme <- list(...)
+  return(chart)
+}
+
+#' @export
+#'
+#' @rdname chartgpu-theme
+chartgpu_theme_light <- function(chart) {
+  stopifnot("`chart` must have been created with `chartgpu`" = inherits(chart, "chartgpu"))
+  chart$x$options$theme <- "light"
+  return(chart)
+}
+
+#' @export
+#'
+#' @rdname chartgpu-theme
+chartgpu_theme_dark <- function(chart) {
+  stopifnot("`chart` must have been created with `chartgpu`" = inherits(chart, "chartgpu"))
+  chart$x$options$theme <- "dark"
+  return(chart)
+}
+

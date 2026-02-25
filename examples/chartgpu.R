@@ -44,5 +44,6 @@ chartgpu(list(
   xAxis = list(name = "X axis"),
   yAxis = list(name = "Y axis"),
   tooltip = list(trigger = "axis"),
-  dataZoom = list(list(type = "inside"), list(type = "slider"))
+  dataZoom = list(list(type = "inside"), list(type = "slider")),
+  theme = "light"
 ))
