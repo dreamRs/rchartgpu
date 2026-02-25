@@ -61,3 +61,50 @@ chartgpu_theme_dark <- function(chart) {
   return(chart)
 }
 
+
+
+
+
+
+#' ChartGPU Data Zoom
+#'
+#' @param chart A chart created with [chartgpu()].
+#' @param type Type of zoom between : `"inside"` (with mouse) or `"slider"` (below chart) or both.
+#' @param ... Options for zoom,
+#'  see [https://github.com/ChartGPU/ChartGPU/blob/main/docs/api/options.md#data-zoom-configuration](https://github.com/ChartGPU/ChartGPU/blob/main/docs/api/options.md#data-zoom-configuration).
+#'
+#' @returns A [chartgpu()] `htmlwidget` object.
+#' @export
+#'
+#' @example examples/chartgpu_zoom.R
+chartgpu_zoom <- function(chart, type = c("inside", "slider"), ...) {
+  type <- match.arg(type, several.ok = TRUE)
+  stopifnot("`chart` must have been created with `chartgpu`" = inherits(chart, "chartgpu"))
+  dataZoom <- chart$x$options$dataZoom
+  for (type_i in type) {
+    if (length(dataZoom) < 1) {
+      dataZoom <- list(list(type = type_i, ...))
+    } else {
+      types <- vapply(X = dataZoom, FUN = `[[`, FUN.VALUE = character(1), "type")
+      idx <- which(types == type_i)
+      if (length(idx) == 1) {
+        dataZoom[[idx]] <- list(type = type_i, ...)
+      } else {
+        dataZoom <- c(
+          dataZoom,
+          list(list(type = type_i, ...))
+        )
+      }
+    }
+  }
+  chart$x$options$dataZoom <- dataZoom
+  return(chart)
+}
+
+
+
+
+
+
+
+
