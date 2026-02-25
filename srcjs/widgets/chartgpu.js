@@ -2,6 +2,7 @@ import "widgets";
 import { ChartGPU } from "chartgpu";
 
 
+
 HTMLWidgets.widget({
 
   name: "chartgpu",
@@ -10,6 +11,7 @@ HTMLWidgets.widget({
 
   factory: function(el, width, height) {
 
+    let chart = null;
 
     return {
 
@@ -18,7 +20,14 @@ HTMLWidgets.widget({
         var options = x.options
 
         const container = document.getElementById(el.id);
-        ChartGPU.create(container, options);
+        console.log(chart);
+        if (chart === null) {
+          chart = ChartGPU.create(container, options);
+        } else {
+          chart.then(function(x) {
+            x.setOption(options);
+          });
+        }
 
       },
 
@@ -31,3 +40,4 @@ HTMLWidgets.widget({
     };
   }
 });
+

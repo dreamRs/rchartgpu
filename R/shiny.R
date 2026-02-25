@@ -10,6 +10,8 @@
 #' @name chartgpu-shiny
 #'
 #' @export
+#'
+#' @example examples/shiny.R
 chartgpuOutput <- function(outputId, width = "100%", height = "400px") {
   htmlwidgets::shinyWidgetOutput(outputId, "chartgpu", width, height, package = "rchartgpu")
 }

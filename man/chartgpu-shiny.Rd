@@ -29,3 +29,35 @@ is useful if you want to save an expression in a variable.}
 Output and render functions for using \code{\link[=chartgpu]{chartgpu()}} within Shiny
 applications and interactive Rmd documents.
 }
+\examples{
+
+library(shiny)
+library(rchartgpu)
+
+ui <- fluidPage(
+  fluidRow(
+    column(
+      width = 8,
+      offset = 2,
+      selectInput(
+        inputId = "variable",
+        label = "Variable:",
+        choices = names(ggplot2::economics)[-1]
+      ),
+      chartgpuOutput(outputId = "chart", height = "500px")
+    )
+  )
+)
+
+server <- function(input, output, session) {
+
+  output$chart <- renderChartgpu({
+    chartgpu(ggplot2::economics[, c("date", input$variable)]) |>
+      chartgpu_theme_light()
+  })
+
+}
+
+if (interactive())
+  shinyApp(ui, server)
+}
