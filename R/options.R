@@ -1,3 +1,22 @@
+#' Update chart options
+#'
+#' @param chart A chart created with [chartgpu()].
+#' @param ... Any ChartGPU valid options,
+#'  see [https://github.com/ChartGPU/ChartGPU/blob/main/docs/api/options.md](https://github.com/ChartGPU/ChartGPU/blob/main/docs/api/options.md)
+#'
+#' @returns A [chartgpu()] `htmlwidget` object.
+#' @export
+#'
+#' @examples
+chartgpu_options <- function(chart, ...) {
+  stopifnot("`chart` must have been created with `chartgpu`" = inherits(chart, "chartgpu"))
+  chart$x$options <- modifyList(
+    x = chart$x$options,
+    val = dropNulls(list(...))
+  )
+  return(chart)
+}
+
 
 #' Update configuration of series
 #'
