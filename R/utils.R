@@ -26,23 +26,51 @@ parse_data <- function(data) {
   return(data)
 }
 
-
-make_serie <- function(data, type = NULL) {
-  series <- lapply(
-    X = colnames(data)[-1],
-    FUN = function(nm) {
-      c(colnames(data)[1], nm)
-    }
-  )
-  data <- parse_data(data)
-  lapply(
-    X = series,
-    FUN = function(nms) {
+#' @importFrom rlang eval_tidy as_name
+make_serie <- function(data, mapping = NULL, type = NULL) {
+  if (is.null(mapping)) {
+    series <- lapply(
+      X = colnames(data)[-1],
+      FUN = function(nm) {
+        c(colnames(data)[1], nm)
+      }
+    )
+    data <- parse_data(data)
+    lapply(
+      X = series,
+      FUN = function(nms) {
+        list(
+          data = unname(data[, nms]),
+          type = type %||% "line",
+          name = nms[2]
+        )
+      }
+    )
+  } else {
+    mapdata <- lapply(mapping, rlang::eval_tidy, data = data)
+    seriesdata <- as.data.frame(mapdata)
+    if (is.null(seriesdata$colour)) {
       list(
-        data = unname(data[, nms]),
-        type = type %||% "line",
-        name = nms[2]
+        list(
+          data = parse_data(unname(seriesdata)),
+          type = type %||% "line",
+          name = rlang::as_name(mapping$y)
+        )
+      )
+    } else {
+      colour <- seriesdata$colour
+      seriesdata$colour <- NULL
+      seriesdata <- split(x = seriesdata, f = colour)
+      lapply(
+        X = names(seriesdata),
+        FUN = function(nm) {
+          list(
+            data = parse_data(unname(seriesdata[[nm]])),
+            type = type %||% "line",
+            name = nm
+          )
+        }
       )
     }
-  )
+  }
 }

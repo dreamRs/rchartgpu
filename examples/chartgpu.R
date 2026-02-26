@@ -1,6 +1,8 @@
 
 # With a data.frame :
 chartgpu(ggplot2::economics) # default to line chart
+# or provide mapping :
+chartgpu(ggplot2::economics, aes(date, psavert))
 
 # scatter chart :
 chartgpu(ggplot2::diamonds[, c("carat", "price")], type = "scatter")

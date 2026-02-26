@@ -4,6 +4,7 @@
 #' ChartGPU is a TypeScript charting library built on WebGPU for smooth, interactive rendering—especially when you have lots of data. See https://github.com/ChartGPU/ChartGPU.
 #'
 #' @param data Can be a `data.frame` (first column is used on x-axis, the others on y-axis) or a list of parameters for configuring a chart.
+#' @param mapping Optional mapping of variables to use if `data` is a `data.frame`
 #' @param type Type of chart, if `data` is a `data.frame`.
 #' @param ... Additional parameters.
 #' @inheritParams htmlwidgets::createWidget
@@ -14,7 +15,7 @@
 #'
 #' @export
 #' @example examples/chartgpu.R
-chartgpu <- function(data = NULL, type = NULL, ..., width = NULL, height = NULL, elementId = NULL) {
+chartgpu <- function(data = NULL, mapping = NULL, type = NULL, ..., width = NULL, height = NULL, elementId = NULL) {
 
   if (inherits(data, "data.frame")) {
     x <- list(
@@ -22,7 +23,7 @@ chartgpu <- function(data = NULL, type = NULL, ..., width = NULL, height = NULL,
     )
     x$options$series <- c(
       x$options$series,
-      make_serie(data, type = type)
+      make_serie(data, mapping = mapping, type = type)
     )
     x$series_names <- colnames(data)[-1]
     if (inherits(data[[1]][1], c("Date", "POSIXct")) && is.null(x$options$xAxis$type)) {

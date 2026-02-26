@@ -6,6 +6,7 @@
 \usage{
 chartgpu(
   data = NULL,
+  mapping = NULL,
   type = NULL,
   ...,
   width = NULL,
@@ -15,6 +16,8 @@ chartgpu(
 }
 \arguments{
 \item{data}{Can be a \code{data.frame} (first column is used on x-axis, the others on y-axis) or a list of parameters for configuring a chart.}
+
+\item{mapping}{Optional mapping of variables to use if \code{data} is a \code{data.frame}}
 
 \item{type}{Type of chart, if \code{data} is a \code{data.frame}.}
 
@@ -42,6 +45,8 @@ ChartGPU is a TypeScript charting library built on WebGPU for smooth, interactiv
 
 # With a data.frame :
 chartgpu(ggplot2::economics) # default to line chart
+# or provide mapping :
+chartgpu(ggplot2::economics, aes(date, psavert))
 
 # scatter chart :
 chartgpu(ggplot2::diamonds[, c("carat", "price")], type = "scatter")
