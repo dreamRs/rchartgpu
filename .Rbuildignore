@@ -10,3 +10,4 @@
 ^LICENSE\.md$
 ^data-raw$
 ^examples$
+^\.github$

@@ -3,6 +3,7 @@
 
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![R-CMD-check](https://github.com/dreamRs/rchartgpu/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/dreamRs/rchartgpu/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 R Htmlwidget for [ChartGPU](https://github.com/ChartGPU/ChartGPU) : ChartGPU is a TypeScript charting library built on WebGPU for smooth, interactive rendering—especially when you have lots of data. See [ChartGPU Examples](https://chartgpu.github.io/ChartGPU/examples/) for more.
