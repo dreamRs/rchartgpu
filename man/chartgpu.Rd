@@ -39,7 +39,8 @@ needs to explicitly discover and interact with a specific widget instance.}
 A \code{\link[=chartgpu]{chartgpu()}} \code{htmlwidget} object.
 }
 \description{
-ChartGPU is a TypeScript charting library built on WebGPU for smooth, interactive rendering—especially when you have lots of data. See https://github.com/ChartGPU/ChartGPU.
+ChartGPU is a TypeScript charting library built on WebGPU for smooth, interactive rendering—especially when you have lots of data.
+See \url{https://github.com/ChartGPU/ChartGPU}.
 }
 \examples{
 

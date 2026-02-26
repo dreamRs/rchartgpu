@@ -14,4 +14,5 @@ Imports:
     ggplot2,
     rlang
 Suggests: 
+    scales,
     shiny

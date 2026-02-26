@@ -1,7 +1,8 @@
 #' @title ChartGPU
 #'
 #' @description
-#' ChartGPU is a TypeScript charting library built on WebGPU for smooth, interactive rendering—especially when you have lots of data. See https://github.com/ChartGPU/ChartGPU.
+#' ChartGPU is a TypeScript charting library built on WebGPU for smooth, interactive rendering—especially when you have lots of data.
+#'  See [https://github.com/ChartGPU/ChartGPU](https://github.com/ChartGPU/ChartGPU).
 #'
 #' @param data Can be a `data.frame` (first column is used on x-axis, the others on y-axis) or a list of parameters for configuring a chart.
 #' @param mapping Optional mapping of variables to use if `data` is a `data.frame`
