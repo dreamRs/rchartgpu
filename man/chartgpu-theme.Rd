@@ -7,14 +7,16 @@
 \alias{chartgpu_theme_dark}
 \title{ChartGPU Theme}
 \usage{
-chartgpu_theme(chart, ...)
+chartgpu_theme(chart, palette = NULL, ...)
 
-chartgpu_theme_light(chart)
+chartgpu_theme_light(chart, palette = NULL)
 
-chartgpu_theme_dark(chart)
+chartgpu_theme_dark(chart, palette = NULL)
 }
 \arguments{
 \item{chart}{A chart created with \code{\link[=chartgpu]{chartgpu()}}.}
+
+\item{palette}{Color palette to use.}
 
 \item{...}{Options for theme, see \url{https://github.com/ChartGPU/ChartGPU/blob/main/docs/api/themes.md}.}
 }

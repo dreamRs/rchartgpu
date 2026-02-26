@@ -29,6 +29,7 @@ chartgpu_serie <- function(chart, name, label = NULL, color = NULL, ...) {
 #' ChartGPU Theme
 #'
 #' @param chart A chart created with [chartgpu()].
+#' @param palette Color palette to use.
 #' @param ... Options for theme, see [https://github.com/ChartGPU/ChartGPU/blob/main/docs/api/themes.md](https://github.com/ChartGPU/ChartGPU/blob/main/docs/api/themes.md).
 #'
 #' @returns A [chartgpu()] `htmlwidget` object.
@@ -37,27 +38,30 @@ chartgpu_serie <- function(chart, name, label = NULL, color = NULL, ...) {
 #' @name chartgpu-theme
 #'
 #' @example examples/chartgpu_theme.R
-chartgpu_theme <- function(chart, ...) {
+chartgpu_theme <- function(chart, palette = NULL, ...) {
   stopifnot("`chart` must have been created with `chartgpu`" = inherits(chart, "chartgpu"))
   chart$x$options$theme <- list(...)
+  chart$x$options$palette <- list1(palette)
   return(chart)
 }
 
 #' @export
 #'
 #' @rdname chartgpu-theme
-chartgpu_theme_light <- function(chart) {
+chartgpu_theme_light <- function(chart, palette = NULL) {
   stopifnot("`chart` must have been created with `chartgpu`" = inherits(chart, "chartgpu"))
   chart$x$options$theme <- "light"
+  chart$x$options$palette <- list1(palette)
   return(chart)
 }
 
 #' @export
 #'
 #' @rdname chartgpu-theme
-chartgpu_theme_dark <- function(chart) {
+chartgpu_theme_dark <- function(chart, palette = NULL) {
   stopifnot("`chart` must have been created with `chartgpu`" = inherits(chart, "chartgpu"))
   chart$x$options$theme <- "dark"
+  chart$x$options$palette <- list1(palette)
   return(chart)
 }
 
