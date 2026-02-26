@@ -16,11 +16,21 @@
 chartgpu_serie <- function(chart, name, label = NULL, color = NULL, ...) {
   stopifnot("`chart` must have been created with `chartgpu`" = inherits(chart, "chartgpu"))
   stopifnot("`name` must be of length 1" = length(name) == 1)
+  serie <- dropNulls(list(name = label, color = color, ...))
+  if (!is.null(serie$data))
+    serie$data <- parse_data(unname(serie$data))
   idx <- which(chart$x$series_names == name)
+  if (!is.null(serie$data) & length(idx) < 1) {
+    if (is.null(serie$type))
+      serie$type <- "line"
+    idx <- length(chart$x$series_names) + 1
+    chart$x$series_names <- c(chart$x$series_names, name)
+    chart$x$options$series[[idx]] <- list()
+  }
   stopifnot("Serie not found!" = length(idx) == 1)
   chart$x$options$series[[idx]] <- modifyList(
     x = chart$x$options$series[[idx]],
-    val = dropNulls(list(name = label, color = color, ...))
+    val = serie
   )
   return(chart)
 }
