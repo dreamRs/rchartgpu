@@ -9,7 +9,7 @@
 #'
 #' @example examples/chartgpu_options.R
 chartgpu_options <- function(chart, ...) {
-  stopifnot("`chart` must have been created with `chartgpu`" = inherits(chart, "chartgpu"))
+  stopifnot("`chart` must have been created with `chartgpu()`" = inherits(chart, "chartgpu"))
   chart$x$options <- modifyList(
     x = chart$x$options,
     val = dropNulls(list(...))
@@ -33,7 +33,7 @@ chartgpu_options <- function(chart, ...) {
 #'
 #' @example examples/chartgpu_serie.R
 chartgpu_serie <- function(chart, name, label = NULL, color = NULL, ...) {
-  stopifnot("`chart` must have been created with `chartgpu`" = inherits(chart, "chartgpu"))
+  stopifnot("`chart` must have been created with `chartgpu()`" = inherits(chart, "chartgpu"))
   stopifnot("`name` must be of length 1" = length(name) == 1)
   serie <- dropNulls(list(name = label, color = color, ...))
   if (!is.null(serie$data))
@@ -68,7 +68,7 @@ chartgpu_serie <- function(chart, name, label = NULL, color = NULL, ...) {
 #'
 #' @example examples/chartgpu_theme.R
 chartgpu_theme <- function(chart, palette = NULL, ...) {
-  stopifnot("`chart` must have been created with `chartgpu`" = inherits(chart, "chartgpu"))
+  stopifnot("`chart` must have been created with `chartgpu()`" = inherits(chart, "chartgpu"))
   chart$x$options$theme <- list(...)
   chart$x$options$palette <- list1(palette)
   return(chart)
@@ -78,7 +78,7 @@ chartgpu_theme <- function(chart, palette = NULL, ...) {
 #'
 #' @rdname chartgpu-theme
 chartgpu_theme_light <- function(chart, palette = NULL) {
-  stopifnot("`chart` must have been created with `chartgpu`" = inherits(chart, "chartgpu"))
+  stopifnot("`chart` must have been created with `chartgpu()`" = inherits(chart, "chartgpu"))
   chart$x$options$theme <- "light"
   chart$x$options$palette <- list1(palette)
   return(chart)
@@ -88,7 +88,7 @@ chartgpu_theme_light <- function(chart, palette = NULL) {
 #'
 #' @rdname chartgpu-theme
 chartgpu_theme_dark <- function(chart, palette = NULL) {
-  stopifnot("`chart` must have been created with `chartgpu`" = inherits(chart, "chartgpu"))
+  stopifnot("`chart` must have been created with `chartgpu()`" = inherits(chart, "chartgpu"))
   chart$x$options$theme <- "dark"
   chart$x$options$palette <- list1(palette)
   return(chart)
@@ -112,7 +112,7 @@ chartgpu_theme_dark <- function(chart, palette = NULL) {
 #' @example examples/chartgpu_zoom.R
 chartgpu_zoom <- function(chart, type = c("inside", "slider"), ...) {
   type <- match.arg(type, several.ok = TRUE)
-  stopifnot("`chart` must have been created with `chartgpu`" = inherits(chart, "chartgpu"))
+  stopifnot("`chart` must have been created with `chartgpu()`" = inherits(chart, "chartgpu"))
   dataZoom <- chart$x$options$dataZoom
   for (type_i in type) {
     if (length(dataZoom) < 1) {
@@ -139,5 +139,43 @@ chartgpu_zoom <- function(chart, type = c("inside", "slider"), ...) {
 
 
 
+#' X-Axis Options
+#'
+#' @param chart A chart created with [chartgpu()].
+#' @param ... Options for x-axis,
+#'  see [https://github.com/ChartGPU/ChartGPU/blob/main/docs/api/options.md#axis-configuration](https://github.com/ChartGPU/ChartGPU/blob/main/docs/api/options.md#axis-configuration).
+#'
+#' @returns A [chartgpu()] `htmlwidget` object.
+#' @export
+#'
+#' @example examples/chartgpu_axis_x.R
+chartgpu_axis_x <- function(chart, ...) {
+  stopifnot("`chart` must have been created with `chartgpu()`" = inherits(chart, "chartgpu"))
+  chart$x$options$xAxis <- modifyList(
+    x = chart$x$options$xAxis %||% list(),
+    val = dropNulls(list(...))
+  )
+  return(chart)
+}
+
+
+#' Y-Axis Options
+#'
+#' @param chart A chart created with [chartgpu()].
+#' @param ... Options for y-axis,
+#'  see [https://github.com/ChartGPU/ChartGPU/blob/main/docs/api/options.md#axis-configuration](https://github.com/ChartGPU/ChartGPU/blob/main/docs/api/options.md#axis-configuration).
+#'
+#' @returns A [chartgpu()] `htmlwidget` object.
+#' @export
+#'
+#' @example examples/chartgpu_axis_y.R
+chartgpu_axis_y <- function(chart, ...) {
+  stopifnot("`chart` must have been created with `chartgpu()`" = inherits(chart, "chartgpu"))
+  chart$x$options$yAxis <- modifyList(
+    x = chart$x$options$yAxis %||% list(),
+    val = dropNulls(list(...))
+  )
+  return(chart)
+}
 
 
