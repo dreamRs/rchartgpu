@@ -7,7 +7,7 @@
 #' @returns A [chartgpu()] `htmlwidget` object.
 #' @export
 #'
-#' @examples
+#' @example examples/chartgpu_options.R
 chartgpu_options <- function(chart, ...) {
   stopifnot("`chart` must have been created with `chartgpu`" = inherits(chart, "chartgpu"))
   chart$x$options <- modifyList(
