@@ -16,7 +16,7 @@
 #'
 #' @export
 #' @example examples/chartgpu.R
-chartgpu <- function(data = NULL, mapping = NULL, type = NULL, ..., width = NULL, height = NULL, elementId = NULL) {
+chartgpu <- function(data = NULL, mapping = NULL, type = NULL, ..., group = NULL, sync_zoom = FALSE, width = NULL, height = NULL, elementId = NULL) {
 
   if (inherits(data, "data.frame")) {
     x <- list(
@@ -35,7 +35,12 @@ chartgpu <- function(data = NULL, mapping = NULL, type = NULL, ..., width = NULL
       options = c(data, list(...))
     )
   }
-
+  
+  if (!is.null(group)) {
+    x$syncGroup <- group
+    x$syncZoom  <- isTRUE(sync_zoom)
+  }
+  
   attr(x, "TOJSON_ARGS") <- list(dataframe = "rows")
 
   createWidget(

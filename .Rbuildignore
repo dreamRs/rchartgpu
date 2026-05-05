@@ -11,3 +11,5 @@
 ^data-raw$
 ^examples$
 ^\.github$
+^\.positai$
+^\.claude$
