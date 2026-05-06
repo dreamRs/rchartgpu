@@ -8,6 +8,8 @@
 #' @param mapping Optional mapping of variables to use if `data` is a `data.frame`
 #' @param type Type of chart, if `data` is a `data.frame`.
 #' @param ... Additional parameters.
+#' @param group Group ID to link multiple charts together.
+#' @param sync_zoom Whether to sync zoom/pan across charts in the same group.
 #' @inheritParams htmlwidgets::createWidget
 #'
 #' @return A [chartgpu()] `htmlwidget` object.
