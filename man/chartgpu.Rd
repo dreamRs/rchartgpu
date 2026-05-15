@@ -9,6 +9,8 @@ chartgpu(
   mapping = NULL,
   type = NULL,
   ...,
+  group = NULL,
+  sync_zoom = FALSE,
   width = NULL,
   height = NULL,
   elementId = NULL
@@ -22,6 +24,10 @@ chartgpu(
 \item{type}{Type of chart, if \code{data} is a \code{data.frame}.}
 
 \item{...}{Additional parameters.}
+
+\item{group}{Group ID to link multiple charts together.}
+
+\item{sync_zoom}{Whether to sync zoom/pan across charts in the same group.}
 
 \item{width}{Fixed width for widget (in css units). The default is
 \code{NULL}, which results in intelligent automatic sizing based on the
@@ -94,4 +100,5 @@ chartgpu(list(
   dataZoom = list(list(type = "inside"), list(type = "slider")),
   theme = "light"
 ))
+
 }

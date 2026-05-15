@@ -49,3 +49,4 @@ chartgpu(list(
   dataZoom = list(list(type = "inside"), list(type = "slider")),
   theme = "light"
 ))
+
